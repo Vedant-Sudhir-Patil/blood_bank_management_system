@@ -1,0 +1,42 @@
+create database bloodbank;
+
+CREATE TABLE don (
+donid int,
+  donpass varchar(8),
+  donname varchar(50),
+  bloodgp varchar(3),
+  doncity varchar(50),
+  donstate varchar(50)
+);
+
+CREATE TABLE doclist (
+  docid varchar(40),
+  docpass varchar(8),
+  docname varchar(50)
+);
+
+CREATE TABLE campadd (
+  campid int,
+  camploc varchar(50),
+  campcity varchar(50),
+  campstate varchar(50)
+);
+
+CREATE TABLE donlist (
+  did int,
+  dpass varchar(8),
+  dname varchar(50),
+  bloodgp varchar(3),
+  dcity varchar(50),
+  dstate varchar(50)
+);
+
+CREATE TABLE needlist (
+  nid int,
+  npass varchar(8),
+  nname varchar(50),
+  ncity varchar(50),
+  nstate varchar(50),
+  needgp varchar(3),
+  approve varchar(20)
+);
