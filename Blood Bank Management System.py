@@ -75,8 +75,8 @@ def auth_donor():
             passw= input(str("Password : "))
             query_vals = (donid, passw )
             db=mysql.connector.connect(host="localhost",
-                                       user="root",password="password",
-                                       database="bloodbankcopy")
+                                       user="root",password="aps",
+                                       database="bloodbank")
             cursor=db.cursor()
             cursor.execute("select * from don" )
             data=cursor.fetchall()
@@ -86,8 +86,8 @@ def auth_donor():
                     break
         elif ans.upper()=='N':
             db=mysql.connector.connect(host="localhost",
-                                       user="root",password="password",
-                                       database="bloodbankcopy")
+                                       user="root",password="aps",
+                                       database="bloodbank")
             cursor=db.cursor()
             cursor.execute("select donid from don order by donid desc" )
             data=cursor.fetchall()
@@ -126,8 +126,8 @@ def view_donor():
         donid = int(input(str("ID : ")))
         db=mysql.connector.connect(host="localhost",
                                    user="root",
-                                   password="password",
-                                   database="bloodbankcopy")
+                                   password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from don" )
         data=cursor.fetchall()
@@ -157,8 +157,8 @@ def doclist():
     donid = int(input(str("ID : ")))
     db=mysql.connector.connect(host="localhost",
                                user="root",
-                               password="password",
-                               database="bloodbankcopy")
+                               password="aps",
+                               database="bloodbank")
     cursor=db.cursor()
     cursor.execute("select * from doclist" )
     data=cursor.fetchall()
@@ -176,8 +176,8 @@ def edit_donor():
         donpass= input(str("Password : "))
         query_vals = (donid, donpass )
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from don" )
         data=cursor.fetchall()
@@ -209,8 +209,8 @@ def donate_donor():
         passw= input(str("Password : "))
         query_vals = (donid, passw )
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from don" )
         dat=cursor.fetchall()
@@ -252,8 +252,8 @@ def request_donor():
         passw= input(str("Password : "))
         query_vals = (donid, passw )
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from don" )
         dat=cursor.fetchall()
@@ -296,8 +296,8 @@ def Proof_donor():
         passw= input(str("Password : "))
         query_vals = (donid, passw )
         db=mysql.connector.connect(host="localhost",user="root",
-                                   password="password",
-                                   database="bloodbankcopy")
+                                   password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from donlist" )
         dat=cursor.fetchall()
@@ -325,8 +325,8 @@ def auth_doctor():
         name=input(str("Name :"))
         query_vals = (docid, passw, name )
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from doclist" )
         data=cursor.fetchall()
@@ -347,8 +347,8 @@ def auth_doctor():
 def approve_doctor():
     try:
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from needlist" )
         dat=cursor.fetchall()
@@ -384,8 +384,8 @@ def view_doctor():
     try:
         docid = input(str("Doctor's ID : "))
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from doclist" )
         data=cursor.fetchall()
@@ -416,8 +416,8 @@ def editname_doctor():
         docpass= input(str("Doctor's Password : "))
         query_vals = (docid, docpass )
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from doclist" )
         data=cursor.fetchall()
@@ -507,8 +507,8 @@ def admin():
 def add_camps():
     try:
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         rep=1
         while rep==1:
@@ -541,15 +541,15 @@ def add_camps():
 
 def remove_donors():
     db=mysql.connector.connect(host="localhost",
-                               user="root",password="password",
-                               database="bloodbankcopy")
+                               user="root",password="aps",
+                               database="bloodbank")
     cursor=db.cursor()
     cursor.execute("select * from don" )
     data=cursor.fetchall()
     for i in list(data):
         print(i[0],space(i[0]),i[1],space(i[1]),i[2],space(i[2]),i[3],space(i[3]),i[4],space(i[4]),i[5])
     delete=input("Enter ID of donor, you want to delete : ")
-    cursor.execute("delete from don where donid=%s",delete)
+    cursor.execute("delete from don where donid=%s",(delete,))
     db.commit()
     print("Entry deleted successfully")
 
@@ -561,8 +561,8 @@ def remove_donors():
 
 def remove_doctors():
     db=mysql.connector.connect(host="localhost",
-                               user="root",password="password",
-                               database="bloodbankcopy")
+                               user="root",password="aps",
+                               database="bloodbank")
     cursor=db.cursor()
     cursor.execute("select * from doclist" )
     data=cursor.fetchall()
@@ -570,8 +570,8 @@ def remove_doctors():
         print(i[0],
         space(i[0]),i[1],space(i[1]),i[2])
     delete=input("Enter ID of doctor, you want to delete (D 0XX):")
-    condition="delete fron doclist where docid=%s"
-    cursor.execute(condition,delete)
+    condition="delete from doclist where docid=%s"
+    cursor.execute(condition,(delete))
     db.commit()
     print("Entry deleted successfully")
 
@@ -582,8 +582,8 @@ def remove_doctors():
 def add_doctors():
     try:
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         rep=1
         while rep==1:
@@ -666,8 +666,8 @@ def show_all():
 def show_all_donors():
     try:
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from don" )
         data=cursor.fetchall()
@@ -689,8 +689,8 @@ def show_all_donors():
 def show_all_doctors():
     try:
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from doclist" )
         data=cursor.fetchall()
@@ -710,8 +710,8 @@ def show_all_doctors():
 def show_all_camps():
     try:
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from campadd" )
         data=cursor.fetchall()
@@ -732,8 +732,8 @@ def show_all_camps():
 def show_donators():
     try:
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from donlist" )
         data=cursor.fetchall()
@@ -756,8 +756,8 @@ def show_donators():
 def show_recievers():
     try:
         db=mysql.connector.connect(host="localhost",
-                                   user="root",password="password",
-                                   database="bloodbankcopy")
+                                   user="root",password="aps",
+                                   database="bloodbank")
         cursor=db.cursor()
         cursor.execute("select * from don" )
         data=cursor.fetchall()
@@ -773,32 +773,3 @@ def show_recievers():
         print("Try Again")        
 
 main()
-
-#------------------------------------------------------------------------------------------------------------------------
-#                                           BLOOD BANK MANAGEMANT SYSTEM
-#------------------------------------------------------------------------------------------------------------------------
-#The Function Used Are :-
-#donor()
-#doctor()
-#auth_donor()
-#view_donor()
-#donate_donor()
-#edit_donor()
-#request_donor()
-#Proof_donor()
-#view_doctor()
-#auth_doctor()
-#approve_doctor()
-#editname_doctor()
-#verification()
-#admin()
-#add_camps()
-#remove_donors()
-#remove_doctors()
-#add_doctors()
-#verification()
-#show_all()
-#show_recievers()
-#show_donators()
-#show_all_camps()
-#------------------------------------------------------------------------------------------------------------------------
